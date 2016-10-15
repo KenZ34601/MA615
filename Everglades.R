@@ -410,3 +410,4 @@ text(0.70, 0.36, labels="Avoid elevation sickness.", pos=4, cex=1.2, font=3)
 
 par(old_par)                                     # restore the original parameters
 if (saveAsPng) { dev.off() }                     # end plotting, write file
+

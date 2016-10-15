@@ -1,0 +1,180 @@
+---
+title: "MA615-HW1"
+author: "Quan Zhou"
+date: "September 18, 2016"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Exercise 1
+```{r}
+#1
+#a
+aVec<-c(1:20)
+#b
+bVec<-sort(aVec, decreasing = TRUE)
+#c
+cVec<-c(aVec,bVec[-1])
+#d
+tmp<-c(4,6,3)
+#e
+eVec<-rep(tmp, times=10)
+#f
+fVec<-c(rep(tmp, times = 10),4)
+#g
+gVec<-rep(tmp, times = c(10,20,30))
+#2. Creating vectors
+#a
+x <- seq(3, 6, 0.1)
+y <- exp(x)*cos(x)
+plot(x,y,col="red", type="l")
+points(x,cos(x),col="black")
+points(x,exp(x),col="green")
+
+#3
+#a
+hVec<-(0.1^seq(3, 36, by=3)*0.2^seq(1, 34, by=3))
+#b
+iVec<-2^seq(1, 25, by=1)/seq(1, 25, by=1)
+
+#4
+#a
+sigma_a<-sum(seq(10, 100, by=1)^3+4*seq(10,100, by=1)^2)
+#b
+sigma_b<-sum(2^seq(1, 25, by=1)/seq(1, 25, by=1)+3^seq(1,25, by=1)/seq(1, 25, by=1))
+
+#5
+#a
+jVec<-paste("label",1:30,sep=" ")
+#b
+kVec<-paste("fn",1:30,sep="")
+
+#6
+set.seed(50)
+xVec <- sample(0:999, 250, replace=T)
+yVec <- sample(0:999, 250, replace=T)
+plot(xVec, col="red")
+points(xVec[xVec>600], col="green")
+#a
+diffVec <- yVec[-1] - xVec[-1*length(yVec)]
+plot(diffVec, col="black")
+#b
+divVec <- sin(yVec[-1*length(xVec)])/cos(xVec[-1])  
+plot(divVec, col="black")
+#c
+x_new <- xVec[-c(length(xVec)-1, length(xVec))]+2*xVec[-c(1, length(xVec))]-xVec[-c(1,2)]
+#d
+sigma_d <- sum(-exp(-xVec[-1])/(xVec[-length(xVec)]+10))
+
+#7
+#a
+plot(yVec, col="blue")
+points(yVec[yVec>600], col="yellow")
+#b
+idx<-which(yVec>600)
+#c
+which(xVec[idx]>600)
+#d
+avg<-mean(xVec)
+root_x <- sqrt(abs(xVec-avg))
+plot(xVec, col="red")
+points(root_x, col="green")
+#e
+which(yVec>max(yVec)-200)
+#f
+idx_even <- which(xVec%%2 == 0)
+length(idx_even)
+#g
+xVec_new <- xVec[(order(yVec, decreasing = FALSE))]
+#h
+xVec_sample <- xVec[seq(1,250,by=3)]
+
+#8
+#numerator:even starting 2
+#denominator: odd starting 3
+#odd<-seq(3,39,by=2)
+#even<-seq(2,38,by=2)
+mVec<-c(1, cumprod(seq(2,38,by=2)/seq(3,39,by=2)))
+sum(mVec)
+```
+Exercise 2
+```{r}
+#1
+#a
+A = matrix(c(1, 5, -2, 1, 2, -1, 3, 6, -3), nrow = 3, ncol = 3)
+# require expm package
+A %*% A %*% A
+#b
+A[,3] <- A[,2]+A[,3]
+
+#2
+colVec <- rep.int(10,15)
+B <- rbind(colVec, -colVec, colVec)
+B%*%t(B)
+#3
+z<-rbind(rep.int(0,6),diag(x = 1, 5, 6))
+t(z)+z
+
+#4
+outer_vec <- 0:4
+outer(outer_vec, outer_vec, "+")
+
+#5
+#a
+outer(0:4, 0:4,"+")%%5
+#b
+outer(0:9, 0:9,"+")%%10
+#c
+outer(0:8, 9:1,"+")%%9
+
+#6
+C <- matrix(seq(1,5, by=1), 5, 5)
+D <- t(C)
+A <- abs(C-D)+diag(x=1, 5, 5)
+b <- c(7, -1, -3, 5, 17)
+solve(A, b)
+
+#7
+set.seed(75)
+aMat <- matrix( sample(10, size=60, replace=T), nr=6)
+#a
+g4plus<-aMat > 4
+length(which(g4plus))
+#b
+rownames(aMat) <- paste("ROW", 1:6, sep = "_")
+indexMat<-which(aMat == 7, arr.ind = TRUE)
+counts<-table(indexMat[,1])
+which(counts==2)[1]
+#c
+sigmaMat <- colSums(aMat)
+which( outer(sigmaMat,sigmaMat,"+")>75, arr.ind=T )
+#8
+#a
+#sum <- 0
+#for(j in 1:5){
+#  for(i in 1:20){
+#    sum <- sum + i^4 / (j + 3)
+#  }
+#}
+sum(outer((1:20)^4, (1:5) + 3, "/"))
+#b
+#sum <- 0
+#for(j in 1:5){
+#  for(i in 1:20){
+#    sum <- sum + i^4 / (i*j + 3)
+#  }
+#}
+sum((1:20)^4 / (3 + outer(1:20, 1:5)))
+
+#c
+#sum <- 0
+#for(i in 1:20){
+#  for(j in 1:i){
+#    sum <- sum + i^4 / (i*j + 3)
+#  }
+#}
+sum( outer(1:10,1:10,function(i,j){ (i>=j)*i^4/(3+i*j) }) )
+```
