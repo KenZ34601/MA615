@@ -1,0 +1,52 @@
+---
+title: 'Class 2: outline'
+author: "Haviland Wright"
+date: "September 10, 2016"
+output: html_document
+---
+
+### Textbook
+
+* Lander 2nd edition not available.  Reverting to 1st edition.  
+* Adding  [An Introduction to R Version 3.3.1 (2016-06-21)](https://cran.r-project.org/) to the course.  
+    + Assignment:  read first 40 pages  
+### R and RStudio  
+
+* Quick tour of Rstudio.  See [RStudio Quick Start Guide](http://tessera.io/docs-r-intro-bootcamp/slides/Quick_Start_Guide_RStudio.pdf) for more detail.  
+    + See also  [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/) for an RStudio Reference card.  
+    
+* Review of project setup for homework and class projects.
+
+### Document authoring in RStudio  
+
+What is important about Markdown is that it allows you to author documents that include text and R.  A simple way to get started is to simply start a new Markdown file in RStudio.  You get a short sample file that gets you started.  
+
+
+There is a reference card for Markdown at
+[RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
+
+
+### LaTeX  
+
+RStudio also supports Sweave which gives you fuller access to LaTeX. In your setup instructions I suggested that you install Texstudio.
+
+
+LaTeX is a huge system with broad capability.  It is extensively documented. 
+    + [The TeX Users Group](https://www.tug.org/) has been in operation since 1980.  So, they didn't start out on the Internet.  
+    + The American Mathematical Society has LaTeX information pages on their website [AMS-LaTeX](http://www.ams.org/publications/authors/tex/amslatex)  
+    + [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)  
+    + [The LaTeX3 project]()  The LaTeX3 project is a long-term research project to develop the next version of the LaTeX typesetting system.  
+    + And many more.  
+    + If you are new to LaTeX mathematics notation you will find a visual editor handy.  There is a good one at [codecogs.com](http://www.codecogs.com/latex/eqneditor.php).  
+    + There is a table editor at [LaTeX Table Generator](http://www.tablesgenerator.com/latex_tables#).  
+    
+
+```{r}
+x <- 1:10; y <- (1:10)^2
+x + y
+plot(x, y)
+```
+
+$\frac{1}{2}$
+
+
